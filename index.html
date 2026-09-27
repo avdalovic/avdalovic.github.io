@@ -143,6 +143,26 @@
       margin-bottom: 18px;
     }
 
+    .figure {
+      margin: 24px 0 22px 0;
+      text-align: center;
+    }
+
+    .figure img {
+      width: 100%;
+      max-width: 640px;
+      height: auto;
+    }
+
+    .figure figcaption {
+      max-width: 640px;
+      margin: 8px auto 0 auto;
+      font-size: 14px;
+      color: var(--muted);
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: left;
+    }
+
     .paper {
       margin-bottom: 18px;
     }
@@ -270,43 +290,51 @@
       <h2>Research</h2>
 
       <p>
-        Before the output of an AI model guides a physical action, it should pass three checks.
-        How much should we trust it, which part of the system does it concern, and can a person or
-        a checker confirm why it is right? These three questions organize my work.
+        AI is leaving the screen. Models that once ranked search results and recommended movies now
+        forecast, detect, and increasingly decide inside water plants, power grids, and vehicles. There,
+        a wrong output is no longer just a bad answer. A valve opens, a pump stops, or a car brakes.
+        My research asks what an AI model must demonstrate before its output is allowed to guide a
+        physical action, and it answers with three checks.
       </p>
 
-      <div class="research-block">
-        <h3>1. Uncertainty that survives deployment</h3>
-        <p>
-          Deep learning intrusion detectors for industrial control systems set their alarm threshold
-          on historical benign data. When normal operation changes, that threshold fails. In our
-          experiments, fixed thresholds raised alarms on 74 percent of benign observations despite a
-          1 percent target. I develop adaptive conformal calibration that brings false alarms back to
-          about 2 percent without retraining the detector, graph-aware prediction intervals for
-          industrial forecasting (GRACE-ICS), and calibrated intrusion detection for vehicle CAN
-          networks, together with CANDLe, a reproducible benchmark that separates problems in the
-          model from problems in its threshold.
-        </p>
-      </div>
+      <figure class="figure">
+        <img src="research.svg" alt="An AI model inside a cyber-physical control loop. Sensor data from a physical process flows to an AI model, whose output must pass three checks, uncertainty, localization, and verification, before it guides a decision and an action on the physical world." />
+        <figcaption>
+          An AI model inside a cyber-physical control loop. Before its output guides a decision and an
+          action on the physical world, it should pass three checks.
+        </figcaption>
+      </figure>
 
-      <div class="research-block">
-        <h3>2. Localization through system structure</h3>
-        <p>
-          An alarm should tell an operator where to look. I build detectors on the structure of the
-          plant they protect, from factorization machines that capture interactions between sensors
-          and actuators in water systems to HAID, a hierarchy-aware intrusion detector that encodes
-          the Purdue model as a combinatorial complex using topological deep learning.
-        </p>
-      </div>
+      <p>
+        The first check is <strong>uncertainty</strong>. A detector can look excellent on a benchmark
+        and still lose the trust of operators once normal operation changes and its false alarms pile up.
+        Conformal prediction lets a model state how far its output can be trusted. With calibration that
+        adapts as the plant changes, alarms stay rare and predictable without retraining the detector.
+        The same idea gives industrial forecasts honest prediction intervals and brings calibrated alarms
+        to the CAN bus of vehicles, where a reproducible benchmark separates failures of the model from
+        failures of its threshold.
+      </p>
 
-      <div class="research-block">
-        <h3>3. Verification of machine learning models</h3>
-        <p>
-          A model that guides a physical action should be checked against its specification before
-          deployment. I translate decision tree ensembles into loop-free imperative programs, so that
-          program verification tools can prove or refute safety properties of the model.
-        </p>
-      </div>
+      <p>
+        The second check is <strong>localization</strong>. An alarm is useful only when it tells an
+        operator where to look. An industrial plant is not a flat list of sensors but a hierarchy of
+        devices, controllers, and control zones, and attacks unfold through the interactions among them.
+        Building that structure into the model, from interactions between sensors and actuators in water
+        systems to topological deep learning over the Purdue hierarchy, lets a detector point to the part
+        of the plant that needs attention.
+      </p>
+
+      <p>
+        The third check is <strong>verification</strong>. Some guarantees should hold before a model is
+        ever deployed. Translating decision tree ensembles into programs that standard verification tools
+        can analyze makes it possible to prove, rather than hope, that a model respects its specification.
+      </p>
+
+      <p>
+        Each check answers part of one question. When should an AI model be trusted to act on the physical
+        world? As AI moves from raising alarms to recommending and taking actions in control rooms, vehicles,
+        and robots, answering it becomes a condition for deploying AI where it matters most.
+      </p>
     </section>
 
     <section id="publications">
