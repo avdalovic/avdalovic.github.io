@@ -224,6 +224,7 @@
       <a href="#home">Home</a>
       <a href="#research">Research</a>
       <a href="#publications">Publications</a>
+      <a href="#service">Service</a>
       <a href="#cv">CV</a>
     </nav>
 
@@ -238,22 +239,24 @@
 
         <p>
           I am a Ph.D. student in Computer Science and Engineering at Louisiana State University,
-          advised by Prof. Elias Bou-Harb. My research focuses on trustworthy machine learning
-          for industrial control system security, with an emphasis on anomaly detection,
-          conformal prediction, uncertainty quantification, and deployment realistic evaluation.
+          advised by Prof. Elias Bou-Harb. My research is on trustworthy machine learning for
+          cyber-physical security and safety. I study what an AI model must demonstrate before its
+          output can guide a physical action, in industrial control systems (water, power, and
+          chemical processes) and in vehicle networks.
         </p>
 
         <p>
-          My work studies why deep learning based intrusion detectors that perform well on
-          benchmarks often fail in real deployment. I develop methods that make these systems
-          more reliable, interpretable, and operationally useful for critical infrastructure,
-          including water treatment systems, industrial networks, and connected vehicles.
+          Deep learning detectors that look strong on benchmarks can raise so many false alarms
+          after deployment that operators stop trusting them. My work builds models that can be
+          checked before they are trusted and stay reliable after deployment, using conformal
+          prediction, topological and geometric deep learning, and formal verification.
         </p>
 
         <div class="links">
           <a href="mailto:aavdal1@lsu.edu">Email</a>
           <a href="https://scholar.google.com/citations?user=zDij9NEAAAAJ&hl=en">Google Scholar</a>
-          <a href="#publications">Publications</a>
+          <a href="https://github.com/avdalovic">GitHub</a>
+          <a href="https://www.linkedin.com/in/aleksandar-avdalovi%C4%87-941421222/">LinkedIn</a>
           <a href="cv.pdf">CV</a>
         </div>
       </div>
@@ -266,40 +269,42 @@
     <section id="research">
       <h2>Research</h2>
 
+      <p>
+        Before the output of an AI model guides a physical action, it should pass three checks.
+        How much should we trust it, which part of the system does it concern, and can a person or
+        a checker confirm why it is right? These three questions organize my work.
+      </p>
+
       <div class="research-block">
-        <h3>Deployment realistic calibration for ICS anomaly detection</h3>
+        <h3>1. Uncertainty that survives deployment</h3>
         <p>
-          I study how deep learning anomaly detectors fail after deployment when static alarm
-          thresholds are calibrated on historical benign data and transferred to new operating
-          regimes. My work develops adaptive calibration methods based on conformal prediction
-          that update thresholds online while keeping the upstream detector fixed.
+          Deep learning intrusion detectors for industrial control systems set their alarm threshold
+          on historical benign data. When normal operation changes, that threshold fails. In our
+          experiments, fixed thresholds raised alarms on 74 percent of benign observations despite a
+          1 percent target. I develop adaptive conformal calibration that brings false alarms back to
+          about 2 percent without retraining the detector, graph-aware prediction intervals for
+          industrial forecasting (GRACE-ICS), and calibrated intrusion detection for vehicle CAN
+          networks, together with CANDLe, a reproducible benchmark that separates problems in the
+          model from problems in its threshold.
         </p>
       </div>
 
       <div class="research-block">
-        <h3>Graph aware conformal prediction for industrial operations assurance</h3>
+        <h3>2. Localization through system structure</h3>
         <p>
-          I develop conformal prediction methods that add calibrated uncertainty intervals to
-          industrial forecasting services. This allows operators to reason about forecast
-          reliability, violation budgets, and operational risk.
+          An alarm should tell an operator where to look. I build detectors on the structure of the
+          plant they protect, from factorization machines that capture interactions between sensors
+          and actuators in water systems to HAID, a hierarchy-aware intrusion detector that encodes
+          the Purdue model as a combinatorial complex using topological deep learning.
         </p>
       </div>
 
       <div class="research-block">
-        <h3>Hierarchy aware intrusion detection for industrial control systems</h3>
+        <h3>3. Verification of machine learning models</h3>
         <p>
-          I model industrial control systems using their natural Purdue hierarchy. This work
-          uses combinatorial complexes and topological neural networks to preserve devices,
-          interactions, and PLC control zones during intrusion detection.
-        </p>
-      </div>
-
-      <div class="research-block">
-        <h3>Interaction based attack attribution in water systems</h3>
-        <p>
-          I design attribution methods that capture interactions between sensors and actuators
-          in water treatment systems, improving the ability of operators to identify likely
-          causes of attacks.
+          A model that guides a physical action should be checked against its specification before
+          deployment. I translate decision tree ensembles into loop-free imperative programs, so that
+          program verification tools can prove or refute safety properties of the model.
         </p>
       </div>
     </section>
@@ -307,7 +312,44 @@
     <section id="publications">
       <h2>Publications</h2>
 
-      <h3>Peer Reviewed Publications and Accepted Papers</h3>
+      <h3>Conference Proceedings</h3>
+
+      <div class="paper">
+        <span class="paper-title">
+          CANDLe: Discerning Deep Learning Methods for CAN Bus Intrusion Detection via a Reproducible and Extensible Benchmarking Framework.
+        </span><br />
+        Anthony Nasry Massaad, <strong>Aleksandar Avdalović</strong>, Peyton Andras, Joseph Khoury, and Elias Bou-Harb.<br />
+        International Symposium on Research in Attacks, Intrusions and Defenses, RAID 2026.
+        <span class="note">To appear.</span><br />
+        <span class="small-links">
+          <a href="https://github.com/AnthonyNMassaad/CANDLe">Code</a>
+        </span>
+      </div>
+
+      <div class="paper">
+        <span class="paper-title">
+          GRACE-ICS: Graph-Aware Conformal Intervals for Industrial Operations Assurance.
+        </span><br />
+        <strong>Aleksandar Avdalović</strong>, Joseph Khoury, and Elias Bou-Harb.<br />
+        IEEE/IFIP Network Operations and Management Symposium, NOMS 2026.<br />
+        <span class="small-links">
+          <a href="https://doi.org/10.1109/NOMS69089.2026.11668216">DOI</a>
+          <a href="https://github.com/avdalovic/girder-ics">Code</a>
+        </span>
+      </div>
+
+      <div class="paper">
+        <span class="paper-title">
+          Beyond Arbitrary Thresholds: Conformal Prediction for Trustworthy CAN Bus Intrusion Detection.
+        </span><br />
+        Anthony Nasry Massaad*, <strong>Aleksandar Avdalović*</strong>, Peyton Andras,
+        Joseph Khoury, and Elias Bou-Harb.<br />
+        IEEE International Conference on Communications, ICC 2026.<br />
+        <span class="note">* Equal contribution.</span><br />
+        <span class="small-links">
+          <a href="https://doi.org/10.1109/ICC59461.2026.11587647">DOI</a>
+        </span>
+      </div>
 
       <div class="paper">
         <span class="paper-title">
@@ -323,32 +365,6 @@
 
       <div class="paper">
         <span class="paper-title">
-          GRACE-ICS: Graph-Aware Conformal Intervals for Industrial Operations Assurance.
-        </span><br />
-        <strong>Aleksandar Avdalović</strong>, Joseph Khoury, and Elias Bou-Harb.<br />
-        IEEE/IFIP Network Operations and Management Symposium, NOMS 2026.
-        <span class="note">Accepted to appear.</span><br />
-        <span class="small-links">
-          <a href="https://noms2026.ieee-noms.org/mini-conference">Program</a>
-        </span>
-      </div>
-
-      <div class="paper">
-        <span class="paper-title">
-          Beyond Arbitrary Thresholds: Conformal Prediction for Trustworthy CAN Bus Intrusion Detection.
-        </span><br />
-        Anthony Nasry Massaad*, <strong>Aleksandar Avdalović*</strong>, Peyton Andras,
-        Joseph Khoury, and Elias Bou-Harb.<br />
-        IEEE International Conference on Communications, ICC 2026.
-        <span class="note">Accepted to appear.</span><br />
-        <span class="note">* Equal contribution.</span><br />
-        <span class="small-links">
-          <a href="https://icc2026.ieee-icc.org/program/technical-program">Program</a>
-        </span>
-      </div>
-
-      <div class="paper">
-        <span class="paper-title">
           Program Verification for Rigorous Analysis of Decision Tree Ensembles Against Specifications.
         </span><br />
         Iat Tou Leong, <strong>Aleksandar Avdalović</strong>, and Raul Barbosa.<br />
@@ -359,7 +375,7 @@
         </span>
       </div>
 
-      <h3>Manuscripts Under Review</h3>
+      <h3>Journal Articles</h3>
 
       <div class="paper">
         <span class="paper-title">
@@ -367,16 +383,32 @@
         </span><br />
         <strong>Aleksandar Avdalović</strong>, Joseph Khoury, Ibrahem AlJabea,
         Mustafa Hajij, and Elias Bou-Harb.<br />
-        <span class="note">Manuscript under review.</span>
+        IEEE Transactions on Network and Service Management.
+        <span class="note">Minor revision.</span>
       </div>
+
+      <h3>Manuscripts Under Review</h3>
 
       <div class="paper">
         <span class="paper-title">
           Calibrating the Alarm: Why Deep Learning ICS Anomaly Detectors Fail at Deployment.
         </span><br />
         <strong>Aleksandar Avdalović</strong>, Joseph Khoury, and Elias Bou-Harb.<br />
-        <span class="note">Manuscript under review.</span>
+        <span class="note">Manuscript under review.</span><br />
+        <span class="small-links">
+          <a href="https://github.com/avdalovic/calibrating-the-alarm">Code</a>
+        </span>
       </div>
+    </section>
+
+    <section id="service">
+      <h2>Service and Talks</h2>
+      <ul>
+        <li>Session Chair, Experience Session, IEEE/IFIP NOMS 2026, Rome, Italy.</li>
+        <li>Reviewer, IEEE Transactions on Network and Service Management (TNSM).</li>
+        <li>Oral presentation, GRACE-ICS, IEEE/IFIP NOMS 2026, Rome, Italy, May 2026.</li>
+        <li>Oral presentation, FM-based Attack Attribution, IEEE/IFIP NOMS 2025, Honolulu, HI, May 2025.</li>
+      </ul>
     </section>
 
     <section id="cv">
@@ -389,7 +421,7 @@
     </section>
 
     <footer>
-      Last updated April 2026.
+      Last updated September 2026.
     </footer>
 
   </div>
